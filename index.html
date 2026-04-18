@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ListMais — Sistema de controle de estoque e gastos com compras domésticas. Gerencie suas compras em tempo real com sua família." />
+  <title>ListMais — Controle de Estoque e Compras</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div id="loading-screen" class="loading-screen">
+    <div class="spinner"></div>
+    <p style="color: var(--text-secondary); font-size: 0.9rem;">Carregando...</p>
+  </div>
+
+  <!-- ============================================
+       AUTH SCREEN
+       ============================================ -->
+  <div id="auth-screen" style="display:none;">
+    <div class="auth-card">
+      <div class="auth-logo">
+        <h1>ListMais</h1>
+        <p>Controle de estoque e compras</p>
+      </div>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login" id="tab-login">Entrar</button>
+        <button class="auth-tab" data-tab="signup" id="tab-signup">Criar Conta</button>
+      </div>
+
+      <div class="auth-error" id="auth-error"></div>
+
+      <!-- Login Form -->
+      <form class="auth-form" id="login-form">
+        <div class="form-group">
+          <label for="login-email">Email</label>
+          <input type="email" id="login-email" placeholder="seu@email.com" required />
+        </div>
+        <div class="form-group">
+          <label for="login-password">Senha</label>
+          <input type="password" id="login-password" placeholder="••••••••" required />
+        </div>
+        <button type="submit" class="btn btn-primary btn-block btn-lg" id="login-btn">
+          Entrar
+        </button>
+      </form>
+
+      <!-- Signup Form -->
+      <form class="auth-form" id="signup-form" style="display:none;">
+        <div class="form-group">
+          <label for="signup-name">Nome</label>
+          <input type="text" id="signup-name" placeholder="Seu nome" required />
+        </div>
+        <div class="form-group">
+          <label for="signup-email">Email</label>
+          <input type="email" id="signup-email" placeholder="seu@email.com" required />
+        </div>
+        <div class="form-group">
+          <label for="signup-password">Senha</label>
+          <input type="password" id="signup-password" placeholder="Mínimo 6 caracteres" required minlength="6" />
+        </div>
+        <button type="submit" class="btn btn-primary btn-block btn-lg" id="signup-btn">
+          Criar Conta
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================
+       HOUSEHOLD SCREEN
+       ============================================ -->
+  <div id="household-screen" style="display:none;">
+    <div class="household-card">
+      <div class="auth-logo">
+        <h1>ListMais</h1>
+      </div>
+      <h2>Bem-vindo! 👋</h2>
+      <p>Para começar, crie uma casa ou entre em uma existente com um código de convite.</p>
+
+      <div class="household-options">
+        <div class="household-option" id="opt-create-house">
+          <h3>🏠 Criar Nova Casa</h3>
+          <p>Crie um grupo para gerenciar compras com sua família</p>
+        </div>
+        <form class="household-form" id="create-house-form">
+          <div class="form-group">
+            <label for="house-name">Nome da Casa</label>
+            <input type="text" id="house-name" placeholder="Ex: Casa da Família" required />
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Criar Casa</button>
+        </form>
+
+        <div class="divider">ou</div>
+
+        <div class="household-option" id="opt-join-house">
+          <h3>🔑 Entrar com Código</h3>
+          <p>Use o código de convite para entrar em uma casa existente</p>
+        </div>
+        <form class="household-form" id="join-house-form">
+          <div class="form-group">
+            <label for="invite-code-input">Código de Convite</label>
+            <input type="text" id="invite-code-input" placeholder="Ex: a1b2c3d4" required maxlength="8" />
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Entrar na Casa</button>
+        </form>
+      </div>
+
+      <button class="sidebar-logout" id="household-logout" style="margin-top: 24px;">
+        🚪 Sair da conta
+      </button>
+    </div>
+  </div>
+
+  <!-- ============================================
+       MAIN APP SCREEN
+       ============================================ -->
+  <div id="app-screen">
+    <!-- Sidebar Overlay (mobile) -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h1>ListMais</h1>
+        <div class="house-name" id="sidebar-house-name">Casa</div>
+      </div>
+
+      <div class="sidebar-nav">
+        <a href="#dashboard" class="nav-link active" data-page="dashboard">
+          <span class="nav-icon">📊</span>
+          Dashboard
+        </a>
+        <a href="#list" class="nav-link" data-page="list">
+          <span class="nav-icon">📋</span>
+          Lista de Compras
+        </a>
+        <a href="#history" class="nav-link" data-page="history">
+          <span class="nav-icon">📈</span>
+          Histórico
+        </a>
+        <a href="#settings" class="nav-link" data-page="settings">
+          <span class="nav-icon">⚙️</span>
+          Configurações
+        </a>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="user-info">
+          <div class="user-avatar" id="sidebar-avatar">V</div>
+          <div class="user-details">
+            <div class="user-name" id="sidebar-user-name">Usuário</div>
+            <div class="user-role" id="sidebar-user-role">Membro</div>
+          </div>
+        </div>
+        <button class="sidebar-logout" id="logout-btn">
+          🚪 Sair
+        </button>
+      </div>
+    </nav>
+
+    <!-- Topbar -->
+    <header class="topbar">
+      <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+      <div class="search-bar">
+        <input type="text" placeholder="Buscar itens..." id="global-search" />
+      </div>
+      <div class="topbar-actions">
+        <div class="online-members" id="online-members"></div>
+        <button class="notification-btn" id="notification-btn">
+          🔔
+          <span class="notification-badge" id="notification-badge">0</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Notifications Panel -->
+    <div class="notifications-panel" id="notifications-panel">
+      <div class="notifications-header">
+        <h3>Notificações</h3>
+        <button class="btn btn-sm btn-secondary" id="mark-all-read-btn">Marcar todas</button>
+      </div>
+      <div class="notifications-list" id="notifications-list">
+        <div class="empty-state">
+          <div class="empty-state-icon">🔔</div>
+          <p>Nenhuma notificação</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- DASHBOARD PAGE -->
+      <div class="page active" id="page-dashboard">
+        <div class="page-header">
+          <div>
+            <h2>Dashboard</h2>
+            <p>Visão geral do estoque e gastos</p>
+          </div>
+        </div>
+
+        <div class="stats-grid" id="stats-grid">
+          <!-- Filled by JS -->
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="card">
+            <div class="card-header">
+              <h3>Gastos por Categoria</h3>
+            </div>
+            <div id="category-chart">
+              <!-- Filled by JS -->
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h3>Atividade Recente</h3>
+            </div>
+            <div class="activity-list" id="activity-list">
+              <div class="empty-state">
+                <div class="empty-state-icon">📝</div>
+                <p>Nenhuma atividade ainda</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LIST PAGE -->
+      <div class="page" id="page-list">
+        <div class="page-header">
+          <div>
+            <h2>Lista de Compras</h2>
+            <p>Gerencie seus itens e preços</p>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button class="btn btn-secondary" id="add-item-btn">➕ Novo Item</button>
+            <button class="btn btn-primary" id="finalize-btn">✅ Finalizar Compra</button>
+          </div>
+        </div>
+
+        <div class="list-controls" id="list-controls">
+          <button class="filter-chip active" data-filter="all">Todos</button>
+          <button class="filter-chip" data-filter="to-buy">🛒 A Comprar</button>
+          <button class="filter-chip" data-filter="in-stock">📦 Em Estoque</button>
+          <button class="filter-chip" data-filter="checked">✅ Já Vistos</button>
+        </div>
+
+        <div class="list-summary" id="list-summary">
+          <!-- Filled by JS -->
+        </div>
+
+        <div id="items-container">
+          <!-- Filled by JS -->
+        </div>
+
+        <div class="list-total" id="list-total">
+          <span class="list-total-label">Total Geral</span>
+          <span class="list-total-value" id="total-value">R$ 0,00</span>
+        </div>
+      </div>
+
+      <!-- HISTORY PAGE -->
+      <div class="page" id="page-history">
+        <div class="page-header">
+          <div>
+            <h2>Histórico de Compras</h2>
+            <p>Acompanhe seus gastos ao longo do tempo</p>
+          </div>
+          <button class="btn btn-secondary" id="export-btn">📥 Exportar JSON</button>
+        </div>
+
+        <div class="card" style="margin-bottom: 20px;">
+          <div class="card-header">
+            <h3>Evolução de Gastos</h3>
+          </div>
+          <div class="history-chart" id="history-chart">
+            <div class="empty-state">
+              <div class="empty-state-icon">📊</div>
+              <p>Finalize compras para ver o gráfico</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="purchase-list" id="purchase-list">
+          <div class="empty-state">
+            <div class="empty-state-icon">🛒</div>
+            <h3>Nenhuma compra finalizada</h3>
+            <p>Quando você finalizar uma compra, ela aparecerá aqui com todos os detalhes.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SETTINGS PAGE -->
+      <div class="page" id="page-settings">
+        <div class="page-header">
+          <div>
+            <h2>Configurações</h2>
+            <p>Gerencie sua casa e membros</p>
+          </div>
+        </div>
+
+        <div class="card" style="margin-bottom: 20px;">
+          <div class="card-header">
+            <h3>🏠 Sua Casa</h3>
+          </div>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 16px;">
+            Compartilhe o código abaixo para convidar membros:
+          </p>
+          <div class="invite-code-display">
+            <span class="invite-code-value" id="settings-invite-code">--------</span>
+            <button class="copy-btn" id="copy-invite-btn">Copiar</button>
+          </div>
+        </div>
+
+        <div class="card" style="margin-bottom: 20px;">
+          <div class="card-header">
+            <h3>👥 Membros</h3>
+          </div>
+          <div class="members-grid" id="members-grid">
+            <!-- Filled by JS -->
+          </div>
+        </div>
+
+        <div class="card" style="margin-bottom: 20px;">
+          <div class="card-header">
+            <h3>📦 Dados</h3>
+          </div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <button class="btn btn-secondary" id="load-template-btn">📋 Carregar Template (89 itens)</button>
+            <button class="btn btn-secondary" id="import-btn">📂 Importar JSON</button>
+            <button class="btn btn-secondary" id="export-data-btn">📥 Exportar JSON</button>
+            <button class="btn btn-danger" id="reset-list-btn">🔄 Resetar para Nova Compra</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ============================================
+       MODAL
+       ============================================ -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal" id="modal">
+      <div class="modal-header">
+        <h3 id="modal-title">Modal</h3>
+        <button class="modal-close" id="modal-close">✕</button>
+      </div>
+      <div class="modal-body" id="modal-body">
+        <!-- Filled dynamically -->
+      </div>
+      <div class="modal-footer" id="modal-footer">
+        <!-- Filled dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Hidden file input for import -->
+  <input type="file" id="file-import" accept=".json" style="display:none;" />
+
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>

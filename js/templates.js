@@ -1,0 +1,178 @@
+/**
+ * Template data — 89 items from the original spreadsheet
+ * Used when seeding a new household
+ */
+export const TEMPLATE_CATEGORIES = [
+  {
+    name: 'Mercearia Básica',
+    icon: '🛒',
+    items: [
+      { name: 'Arroz', quantity: 1, unit: 'Pct 5kg' },
+      { name: 'Feijão Carioca', quantity: 2, unit: 'Pct 1kg' },
+      { name: 'Feijão Fradinho', quantity: 1, unit: 'Pct 1kg' },
+      { name: 'Feijão Branco', quantity: 1, unit: 'Pct 1kg' },
+      { name: 'Feijão Preto', quantity: 1, unit: 'Pct 1kg' },
+      { name: 'Farinha de Mandioca', quantity: 1, unit: 'Pct 1kg' },
+      { name: 'Flocão de Milho (Cuscuz)', quantity: 2, unit: 'Pct 500g' },
+      { name: 'Milho de Pipoca', quantity: 1, unit: 'Pct 500g' },
+      { name: 'Macarrão', quantity: 2, unit: 'Pct 500g' },
+      { name: 'Óleo de Soja', quantity: 2, unit: 'Frasco' },
+      { name: 'Azeite de Oliva', quantity: 1, unit: 'Garrafa' },
+      { name: 'Azeite de Dendê', quantity: 1, unit: 'Garrafa' },
+      { name: 'Açúcar', quantity: 2, unit: 'Pct 1kg' },
+      { name: 'Café', quantity: 2, unit: 'Pct 500g' },
+      { name: 'Sal', quantity: 1, unit: 'Pct 1kg' },
+    ],
+  },
+  {
+    name: 'Açougue e Carnes',
+    icon: '🥩',
+    items: [
+      { name: 'Carne Acém', quantity: 1, unit: 'Kg' },
+      { name: 'Bife', quantity: 1, unit: 'Kg' },
+      { name: 'Carne Moída', quantity: 1, unit: 'Kg' },
+      { name: 'Bisteca', quantity: 1, unit: 'Kg' },
+      { name: 'Peito de Frango', quantity: 1, unit: 'Kg' },
+      { name: 'Coxa de Frango', quantity: 1, unit: 'Kg' },
+      { name: 'Toucinho', quantity: 500, unit: 'Gramas' },
+      { name: 'Carne Seca', quantity: 1, unit: 'Kg' },
+      { name: 'Calabresa', quantity: 1, unit: 'Kg' },
+      { name: 'Salsicha', quantity: 1, unit: 'Kg' },
+      { name: 'Carne de Hambúrguer', quantity: 1, unit: 'Caixa' },
+    ],
+  },
+  {
+    name: 'Miúdos e Preparos',
+    icon: '🍖',
+    items: [
+      { name: 'Fígado', quantity: 1, unit: 'Kg' },
+      { name: 'Língua de Boi', quantity: 1, unit: 'Kg' },
+      { name: 'Rabada', quantity: 1, unit: 'Kg' },
+      { name: 'Mocotó', quantity: 1, unit: 'Kg' },
+      { name: 'Sarapatel', quantity: 1, unit: 'Kg' },
+      { name: 'Fato Misto', quantity: 1, unit: 'Kg' },
+    ],
+  },
+  {
+    name: 'Peixaria',
+    icon: '🐟',
+    items: [
+      { name: 'Peixe Corvina', quantity: 1, unit: 'Kg' },
+      { name: 'Peixe Vermelho', quantity: 1, unit: 'Kg' },
+      { name: 'Camarão', quantity: 1, unit: 'Kg' },
+    ],
+  },
+  {
+    name: 'Hortifruti',
+    icon: '🥬',
+    items: [
+      { name: 'Cebola', quantity: 1, unit: 'Kg' },
+      { name: 'Alho', quantity: 3, unit: 'Cabeças' },
+      { name: 'Tomate', quantity: 1, unit: 'Kg' },
+      { name: 'Pimentão', quantity: 3, unit: 'Unidades' },
+      { name: 'Chuchu', quantity: 2, unit: 'Unidades' },
+      { name: 'Abóbora', quantity: 1, unit: 'Pedaço' },
+      { name: 'Batata', quantity: 1, unit: 'Kg' },
+      { name: 'Limão', quantity: 500, unit: 'Gramas' },
+    ],
+  },
+  {
+    name: 'Condimentos',
+    icon: '🧂',
+    items: [
+      { name: 'Molho de Tomate', quantity: 3, unit: 'Sachê' },
+      { name: 'Maionese', quantity: 1, unit: 'Pote' },
+      { name: 'Catchup', quantity: 1, unit: 'Frasco' },
+      { name: 'Mostarda', quantity: 1, unit: 'Frasco' },
+      { name: 'Vinagre', quantity: 1, unit: 'Frasco' },
+      { name: 'Corante (Colorau)', quantity: 1, unit: 'Pct' },
+      { name: 'Açafrão', quantity: 1, unit: 'Pct' },
+      { name: 'Cominho', quantity: 1, unit: 'Pct' },
+      { name: 'Bicarbonato', quantity: 1, unit: 'Pct' },
+    ],
+  },
+  {
+    name: 'Laticínios e Frios',
+    icon: '🧀',
+    items: [
+      { name: 'Leite Integral', quantity: 12, unit: 'Litros' },
+      { name: 'Leite em Pó', quantity: 1, unit: 'Pct/Lata' },
+      { name: 'Creme de Leite', quantity: 3, unit: 'Caixinhas' },
+      { name: 'Leite Condensado', quantity: 2, unit: 'Caixinhas' },
+      { name: 'Queijo Mussarela', quantity: 400, unit: 'Gramas' },
+      { name: 'Presunto', quantity: 400, unit: 'Gramas' },
+      { name: 'Ovos', quantity: 1, unit: 'Cartela' },
+    ],
+  },
+  {
+    name: 'Padaria e Biscoitos',
+    icon: '🍞',
+    items: [
+      { name: 'Pão de Sal', quantity: 6, unit: 'Unidades' },
+      { name: 'Pão de Forma', quantity: 1, unit: 'Pct' },
+      { name: 'Pão de Hambúrguer', quantity: 1, unit: 'Pct' },
+      { name: 'Pão de Hot Dog', quantity: 1, unit: 'Pct' },
+      { name: 'Biscoito de Sal', quantity: 2, unit: 'Pct' },
+      { name: 'Biscoito Doce', quantity: 2, unit: 'Pct' },
+      { name: 'Farinha de Trigo', quantity: 1, unit: 'Pct 1kg' },
+      { name: 'Fermento em Pó', quantity: 1, unit: 'Pote' },
+      { name: 'Fermento de Pão', quantity: 1, unit: 'Pct' },
+    ],
+  },
+  {
+    name: 'Congelados',
+    icon: '🧊',
+    items: [
+      { name: 'Sorvete', quantity: 1, unit: 'Pote 2L' },
+      { name: 'Açaí', quantity: 1, unit: 'Pote' },
+      { name: 'Polpa de Frutas', quantity: 5, unit: 'Unidades' },
+    ],
+  },
+  {
+    name: 'Bebidas',
+    icon: '🥤',
+    items: [
+      { name: 'Suco', quantity: 3, unit: 'Caixas' },
+      { name: 'Refrigerante', quantity: 2, unit: 'Garrafas' },
+      { name: 'Cerveja', quantity: 2, unit: 'Fardos' },
+    ],
+  },
+  {
+    name: 'Higiene Pessoal',
+    icon: '🧴',
+    items: [
+      { name: 'Papel Higiênico', quantity: 1, unit: 'Pct 12un' },
+      { name: 'Creme Dental', quantity: 3, unit: 'Unidades' },
+      { name: 'Sabonete', quantity: 6, unit: 'Unidades' },
+    ],
+  },
+  {
+    name: 'Limpeza',
+    icon: '🧹',
+    items: [
+      { name: 'Detergente', quantity: 3, unit: 'Frascos' },
+      { name: 'Esponja de Pia', quantity: 1, unit: 'Pct 3un' },
+      { name: 'Esponja de Aço', quantity: 1, unit: 'Pct' },
+      { name: 'Sabão em Pó/Líquido', quantity: 1, unit: 'Pct/Frasco' },
+      { name: 'Amaciante de Roupas', quantity: 1, unit: 'Frasco' },
+      { name: 'Desinfetante', quantity: 1, unit: 'Frasco' },
+      { name: 'Água Sanitária', quantity: 1, unit: 'Frasco' },
+      { name: 'Aromatizador Ambientes', quantity: 1, unit: 'Frasco' },
+    ],
+  },
+  {
+    name: 'Outros',
+    icon: '📦',
+    items: [
+      { name: 'Gás de Cozinha', quantity: 1, unit: 'Botijão' },
+    ],
+  },
+  {
+    name: 'Pet',
+    icon: '🐾',
+    items: [
+      { name: 'Ração para Pet', quantity: 1, unit: 'Pct' },
+      { name: 'Molho para Pet', quantity: 3, unit: 'Un' },
+    ],
+  },
+];
