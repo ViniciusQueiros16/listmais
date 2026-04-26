@@ -76,10 +76,14 @@ export function initAuth(onAuthSuccess) {
     btn.textContent = 'Criando conta...';
     authError.classList.remove('show');
 
+    const siteUrl = window.location.origin;
     const { error } = await supabase.auth.signUp({
       email,
       password,
-      options: { data: { name } },
+      options: {
+        data: { name },
+        emailRedirectTo: `${siteUrl}/`,
+      },
     });
 
     btn.disabled = false;
